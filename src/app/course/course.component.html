@@ -1,0 +1,36 @@
+<h2>Your Profile</h2>
+<!-- alternatives:
+with hidden property
+<div [hidden]="courses.length == 0"</div>
+<div [hidden]="courses.length > 0" </div>
+-->
+<!-- 
+  <div *ngIf="courses.length > 0;then coursesList else noCourses"></div>
+  <ng-template #coursesList>
+  <h2>Liste de vos cours: </h2>
+  {{ courses }}
+</ng-template>
+<ng-template #noCourses>
+  sorry...no courses yet!
+</ng-template> -->
+<ul class="nav nav-pills">
+  <li [class.active]="viewMode == 'dash'"><a (click)="viewMode = 'dash'">Dashboard</a></li>
+  <li [class.active]="viewMode == 'list'"><a (click)="viewMode = 'list'">Your Courses</a></li>
+</ul>
+
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'dash'">
+    <h3>Dashboard</h3>
+    
+  </div>
+  <div *ngSwitchCase="'list'">
+    <h3>List of your Courses</h3>
+    <ul *ngFor="let course of courses; index as i">
+      <li>{{ i }} - {{ course.name }} 
+        <button class="btn btn-warning" (click)="onDel()">remove</button>
+      </li>
+    </ul>
+    <button class="btn btn-primary" (click)="onAdd()">Add</button>
+  </div>
+  <div *ngSwitchDefault> Welcome </div>
+</div>

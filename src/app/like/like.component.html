@@ -1,0 +1,8 @@
+<body>
+  <span class="glyphicon lg" 
+  [class.glyphicon-heart]="tweet.isLiked" 
+  [class.glyphicon-heart-empty]="!tweet.isLiked" 
+  (click)="onClick()">
+  </span>
+  <span class="counter">{{ tweet.likesCount }}</span>
+</body>

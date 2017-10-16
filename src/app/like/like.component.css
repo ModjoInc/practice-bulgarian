@@ -1,0 +1,11 @@
+.glyphicon {
+    font-size: 2.5em;
+    cursor: pointer;
+    color: #ccc;
+}
+.glyphicon-heart {
+    color: deeppink;
+}
+.counter {
+    font-size: 1.5em;
+}
