@@ -1,0 +1,16 @@
+<div class="row">
+  <form>
+    <input 
+    type="text" 
+    class="form-control"
+    (keyup.enter)="addLesson(lesson)" #lesson>
+    <ul class="list-group">
+      <li 
+        *ngFor="let lesson of form.get('lessons').controls"
+        class="list-group-item">
+      {{ lesson.value }}
+      </li>
+    </ul>
+  </form>
+</div>
+

@@ -1,3 +1,4 @@
+<div class="row">
 <h2>Your Profile</h2>
 <!-- alternatives:
 with hidden property
@@ -21,16 +22,38 @@ with hidden property
 <div [ngSwitch]="viewMode">
   <div *ngSwitchCase="'dash'">
     <h3>Dashboard</h3>
-    
+    <new-course></new-course>
+    <app-add-course></app-add-course>
   </div>
   <div *ngSwitchCase="'list'">
     <h3>List of your Courses</h3>
-    <ul *ngFor="let course of courses; index as i">
-      <li>{{ i }} - {{ course.name }} 
-        <button class="btn btn-warning" (click)="onDel()">remove</button>
+    <h4> Your Coach: {{ author.name }}, {{ author.role?.name }} </h4>
+    <button class="btn btn-success" (click)="loadCourses() " >Load Courses</button>
+    <ul class="list-group">
+      <li 
+      class="list-group-item"
+      *ngFor="let course of courses; trackBy:trackCourses; index as i">
+        {{ i }} - {{ course.name }} 
+        <button class="btn btn-warning" (click)="onDel(course)">remove</button>
       </li>
     </ul>
     <button class="btn btn-primary" (click)="onAdd()">Add</button>
+    <button
+    class="btn btn-primary"
+    [ngStyle]="{
+      'backgroundColor': canSave ? 'blue': 'gray',
+      'color': canSave ? 'white': 'black',
+      'fontWeight': canSave ? 'bold': 'normal'
+    }"    
+    >Save</button>
   </div>
   <div *ngSwitchDefault> Welcome </div>
 </div>
+</div>
+<!-- alternate method for rendering multiple style
+   [style.backgroundColor]="canSave ? 'blue': 'gray' " 
+   [style.color]=" canSave ? 'white' : 'black' " 
+   [style.fontWeight]=" canSave ? 'bold' : 'normal' "
+   ************************************************
+   also better to use persos class to render
+ -->
