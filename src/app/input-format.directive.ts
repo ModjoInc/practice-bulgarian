@@ -11,9 +11,10 @@ export class InputFormatDirective {
 
   @HostListener('blur') onBlur() {
     let value: string = this.el.nativeElement.value;
-    if(this.format == 'lowercase')
-      this.el.nativeElement.value = value.toLowerCase();
+    let self = this;
+    if(self.format == 'lowercase')
+      self.el.nativeElement.value = value.toLowerCase();
     else
-      this.el.nativeElement.value = value.toUpperCase();
+      self.el.nativeElement.value = value.toUpperCase();
   }
 }
